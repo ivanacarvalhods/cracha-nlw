@@ -4,26 +4,33 @@
 // ser humano 12345678910
 //computador 0123456789
 
-const LinksSocialMedia = {
+const socialMediaLinks = {
   github: 'ivanacarvalhods',
-  youtube: 'maykbrito',
-  facebook: 'ivana.carvalhodossantos.9',
+  linkedin: 'ivana-carvalho-70b007155',
+  portfolio: 'ivanacarvalhods',
   instagram: 'ivanacarvalhods',
   twitter: 'ivanacarvalhods'
 }
 
-function changeSocialMediaLinks() {
+//Add social media links
+const updateSocialMediaLinks = () => {
   for (let li of socialLinks.children) {
-    const social = li.getAttribute('class')
+    const socialMedia = li.getAttribute('class')
 
-    li.children[0].href = `https://${social}.com/${LinksSocialMedia[social]}`
+    if (socialMedia === 'linkedin')
+      li.children[0].href = `https://${socialMedia}.com/in/${socialMediaLinks[socialMedia]}`
+    else if (socialMedia === 'portfolio')
+      li.children[0].href = `https://${socialMediaLinks[socialMedia]}.github.io`
+    else
+      li.children[0].href = `https://${socialMedia}.com/${socialMediaLinks[socialMedia]}`
   }
 }
 
-changeSocialMediaLinks()
+//Get API Data
+const getGitHubProfileData = (input = socialMediaLinks.github) => {
+  const favIcon = document.querySelector("link[rel='shortcut icon']")
 
-function getGitHubProfileInfos() {
-  const url = `https://api.github.com/users/${LinksSocialMedia.github}`
+  const url = `https://api.github.com/users/${input}`
 
   fetch(url)
     .then(response => response.json())
@@ -36,4 +43,64 @@ function getGitHubProfileInfos() {
     })
 }
 
-getGitHubProfileInfos()
+const searchButton = document.querySelector('#search-button')
+const gitHubNickInput = document.querySelector('#github-nick-input')
+
+const getGitHubUserInput = () => {
+  const gitHubUserNick = gitHubNickInput.value
+
+  if (!gitHubUserNick) return
+  else getGitHubProfileData(gitHubUserNick)
+}
+
+searchButton.addEventListener('click', getGitHubUserInput)
+
+gitHubNickInput.addEventListener('keyup', event => {
+  let key = event.keyCode
+
+  if (key === 13) getGitHubUserInput()
+})
+
+//Settings modal
+const optionsButton = document.querySelector('#options-button')
+optionsButton.addEventListener('click', () => displayModal('options-modal'))
+
+const displayModal = modalID => {
+  const modal = document.querySelector(`#${modalID}`)
+
+  modal.classList.add('display')
+
+  modal.addEventListener('click', e => {
+    const el = e.target
+    if (el.id === modalID) {
+      modal.classList.remove('display')
+    }
+  })
+  const closeButton = document.querySelector('#close-modal')
+  closeButton.addEventListener('click', () => modal.classList.remove('display'))
+}
+
+//Dark Mode
+const html = document.querySelector('html')
+const darkModeCheckbox = document.querySelector('#dark-mode-check')
+
+if (darkModeCheckbox.checked) html.classList.toggle('dark-mode')
+
+darkModeCheckbox.addEventListener('change', () => {
+  html.classList.toggle('dark-mode')
+})
+
+//Color Themes
+const updateColorTheme = () => {
+  const themeName = colorThemesList.value
+
+  html.classList.add(`${themeName}`)
+}
+
+const colorThemesList = document.querySelector('#color-themes-list')
+colorThemesList.addEventListener('change', updateColorTheme)
+
+updateColorTheme()
+
+updateSocialMediaLinks()
+getGitHubProfileData()

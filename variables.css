@@ -1,0 +1,90 @@
+var {
+  --gray: #202020;
+}
+:root {
+  --background-page: #c50000;
+  --background-card: #ffffff;
+  --background-icons: #fd0000;
+  --font-color: #09090a;
+  --font-hover: #020202;
+
+  --light-gray: #f0f0f0;
+  --dark-gray: #686868;
+  --pink: #ff008e;
+  --yellow: #ffcd1e;
+  --orange: #ff7a29;
+}
+
+.dark-mode:root {
+  --background-page: #040130;
+  --background-card: #dddddd;
+  --background-icons: #5c5c5c;
+  --font-color: #000000;
+  --font-hover: #dadada;
+}
+
+.do-while-2021:root {
+  --color-theme: linear-gradient(
+    to right bottom,
+    #ff008e,
+    #ff1f78,
+    #ff3864,
+    #ff4d51,
+    #ff6140,
+    #ff7036,
+    #ff802b,
+    #ff8f20,
+    #ff9f1b,
+    #ffae18,
+    #ffbe18,
+    #ffcd1e
+  );
+}
+
+.rockeseat-vanilla:root {
+  --color-theme: linear-gradient(
+    to right bottom,
+    #2a263e,
+    #2d2845,
+    #312a4b,
+    #342c52,
+    #382e59,
+    #413468,
+    #4a3977,
+    #533f86,
+    #634ba2,
+    #7457bf,
+    #8564dd,
+    #9771fc
+  );
+}
+
+.nlw-heat:root {
+  --color-theme: linear-gradient(
+    to right bottom,
+    #8566e5,
+    #9464de,
+    #a062d7,
+    #ab60d0,
+    #b45fc9,
+    #bd5ec3,
+    #c55dbe,
+    #cc5cb8,
+    #d55bb2,
+    #dd5bac,
+    #e55ba6,
+    #eb5c9f
+  );
+}
+
+.red:root {
+  --color-theme: linear-gradient(
+    to right bottom,
+    #680000,
+    #9e0101,
+    #c20808,
+    #d61010,
+    #e01a1a,
+    #e01c1c
+  );
+}
